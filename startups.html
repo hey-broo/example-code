@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Startups</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="cards.css">
+  <style>
+    :root {
+      --color-bg: #0D0E12;            /* App dark background */
+      --color-surface: #1C1E26;       /* Card/section background */
+      --color-text: #EDEEF1;          /* Main text */
+      --color-muted: #9CA3AF;         /* Muted/hint text */
+
+      --color-accent-1: #6366F1;      /* Bolt Indigo Primary */
+      --color-accent-2: #7C3AED;      /* Purple highlight */
+      --color-accent-3: #A855F7;      /* Fuchsia for bright accents */
+
+      --color-startup: #4F46E5;       /* For Startup tags/buttons */
+      --color-skill: #10B981;         /* For Skills tags/buttons */
+
+      --shadow: 0 8px 16px rgba(0,0,0,0.3);
+      --transition: all 0.3s ease-in-out;
+
+      --gradient-1: linear-gradient(135deg, var(--color-accent-1), var(--color-accent-3));
+      --gradient-2: linear-gradient(135deg, var(--color-accent-2), var(--color-accent-3));
+      
+      --border-radius: 12px;
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --spacing-xl: 40px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--color-text);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--color-accent-3);
+    }
+
+    .boul {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+
+    nav {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .page-title {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .page-title a {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menus {
+      display: flex;
+      gap: 20px;
+    }
+
+    .h-banner {
+      background-color: var(--color-surface);
+      padding: var(--spacing-xl) 0;
+      margin-bottom: var(--spacing-xl);
+      border-bottom: 1px solid rgb(211, 250, 255);
+      text-align: center;
+      background-image: linear-gradient(rgba(79, 70, 229, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.pexels.com/photos/7102/notes-macbook-study-conference.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .h-banner::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(13, 14, 18, 0.7);
+      z-index: 1;
+    }
+
+    .h-banner .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .h-banner h1 {
+      font-size: 3rem;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text);
+    }
+
+    .h-banner p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--color-muted);
+      font-size: 1.1rem;
+    }
+
+    .search-boul {
+      margin: 30px auto;
+    }
+
+    .search-bar {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      /* margin: 0 auto; */
+    }
+
+ 
+
+    .startups-boul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+
+
+    .submit-sec {
+      background-color: var(--color-surface);
+      border-top: 2px solid white;
+      border: 1px solid rgb(195, 246, 255);
+      padding: var(--spacing-xl);
+      border-radius: var(--border-radius);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .submit-sec h2 {
+      font-size:2rem;
+      margin-bottom: var(--spacing-lg);
+      text-align: center;
+      color: var(--color-text);
+    }
+
+    .from-g  {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .from-g  label {
+      display: block;
+      margin-bottom: var(--spacing-sm);
+      font-weight: 500;
+    }
+
+    .from-g  input,
+    .from-g  textarea {
+      width: 100%;
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-text);
+      font-size: 1rem;
+    }
+
+    .from-g  input:focus,
+    .from-g  textarea:focus {
+      outline: 2px solid var(--color-accent-1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+    }
+
+    .image-upload-boul {
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      text-align: center;
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .image-upload-boul:hover,
+    .image-upload-boul.highlight {
+      border-color: var(--color-accent-1);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .imgupload-placeholder {
+      padding: var(--spacing-lg);
+    }
+
+    .imgupload-placeholder i {
+      font-size: 3rem;
+      color: var(--color-muted);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .imgupload-placeholder p {
+      color: var(--color-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .imgupload-placeholder .small {
+      font-size: 0.8rem;
+    }
+
+    .file-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      max-height: 200px;
+      display: none;
+      margin: 0 auto;
+      border-radius: var(--border-radius);
+    }
+
+    .form-hint {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      margin: var(--spacing-md) 0 var(--spacing-sm);
+    }
+
+    .submit-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      width: 100%;
+      margin-top: var(--spacing-lg);
+      background: var(--gradient-1);
+      color: white;
+      border: none;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .submit-button i {
+      font-size: 1.2rem;
+    }
+
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .h-banner h1 {
+        font-size: 2rem;
+      }
+      
+      .nav-menus {
+        display: none;
+      }
+      
+      .startups-boul {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header/Navigation -->
+  <header>
+    <div class="boul">
+      <nav>
+        <div class="page-title">
+          <a href="">Student<span style="color: var(--color-accent-3);">-StartUps</span></a>
+        </div>
+        <div class="nav-menus">
+          <a href="index.html">Home</a>
+          <a href="startups.html">Startups</a>
+          <a href="skills.html">Skills</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="boul">
+    <div class="h-banner">
+      <div class="content">
+        <h1>Student Startups</h1>
+        <p>Discover innovative startup ideas created by students or share your own venture with the community.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search -->
+  <section class="boul search-boul">
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search startups by name or tag...">
+    </div>
+  <a href="#submit-f">  <button class="btn primary">Add yours!</button></a>
+  </section>
+
+  <!-- Startups Listing -->
+  <section class="boul">
+    <div class="startups-boul" id="startups-boul">
+      <!-- Cards will be dynamically generated here -->
+    </div>
+  </section>
+
+  <!-- Submit Form -->
+  <section class="boul" id="submit-f">
+    <div class="submit-sec">
+      <h2>Submit Your Startup</h2>
+      <form id="startup-f">
+        <div class="from-g ">
+          <label for="startup-n">Startup Name</label>
+          <input type="text" id="startup-n" required>
+        </div>
+        
+        <div class="from-g ">
+          <label for="startup-descript">Description</label>
+          <textarea id="startup-descript" rows="4" required></textarea>
+        </div>
+        
+        <div class="from-g ">
+          <label for="startup-tags">Tags (comma-separated)</label>
+          <input type="text" id="startup-tags" placeholder="e.g., EdTech, AI, Mobile">
+        </div>
+        
+        <div class="from-g ">
+          <label for="startup-img-upload">Upload Image</label>
+          <div class="image-upload-boul">
+            <input type="file" id="startup-img-upload" accept="image/*" class="file-input">
+            <div class="imgupload-placeholder">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Click to upload or drag and drop</p>
+              <p class="small">Supported formats: JPG, PNG, WebP</p>
+            </div>
+            <img id="image-preview" class="image-preview" src="" alt="">
+          </div>
+          <p class="form-hint">Or provide an image URL:</p>
+          <input type="url" id="startup-img" placeholder="https://example.com/image.jpg">
+        </div>
+        
+        <div class="form-row">
+          <div class="from-g ">
+            <label>
+              <i class="fab fa-whatsapp"></i> WhatsApp Link
+            </label>
+            <input type="url" id="startup-whatsapp" placeholder="https://wa.me/1234567890">
+          </div>
+          
+          <div class="from-g ">
+            <label>
+              <i class="fab fa-instagram"></i> Instagram Link
+            </label>
+            <input type="url" id="startup-instagram" placeholder="https://instagram.com/yourstartup">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="from-g ">
+            <label>
+              <i class="fab fa-youtube"></i> YouTube Link
+            </label>
+            <input type="url" id="startup-youtube" placeholder="https://youtube.com/channel/yourstartup">
+          </div>
+          
+          <div class="from-g ">
+            <label>
+              <i class="fab fa-amazon"></i> Amazon Link
+            </label>
+            <input type="url" id="startup-amazon" placeholder="https://amazon.com/your-product">
+          </div>
+        </div>
+        
+        <button type="submit" class="submit-button">
+          <i class="fas fa-rocket"></i> Submit Startup
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="boul">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="startups.html">Startups</a>
+          <a href="skills.html">Skills</a>
+          <a href="mailto:contact@studentshowcase.com">Contact</a>
+        </div>
+        <div class="footer-copyright">
+          &copy; 2025 Student Showcase. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fetch and display startups data
+    async function fetchStartups() {
+      try {
+        const response = await fetch('startups.json');
+        const data = await response.json();
+        
+        // Also get startups from localStorage if any exist
+        const localStartups = getLocalStartups();
+        
+        // Combine the startups from JSON and localStorage
+        const allStartups = [...data.startups, ...localStartups];
+        
+        // Render startup cards
+        renderStartups(allStartups);
+        
+        // Add event listener for search filter
+        setupSearch(allStartups);
+        
+      } catch (error) {
+        console.error('Error fetching startups data:', error);
+      }
+    }
+    
+    // Get startups from localStorage
+    function getLocalStartups() {
+      const localStartups = localStorage.getItem('startups');
+      return localStartups ? JSON.parse(localStartups) : [];
+    }
+    
+    // Render startup cards in the boul
+    function renderStartups(startups) {
+      const startupsboul = document.getElementById('startups-boul');
+      startupsboul.innerHTML = '';
+      
+      startups.forEach(startup => {
+        startupsboul.innerHTML += createStartupCard(startup);
+      });
+    }
+    
+    // Create HTML for a startup card
+    function createStartupCard(startup) {
+      const tagsHtml = startup.tags.map(tag => 
+        `<span class="tag">${tag}</span>`
+      ).join('');
+      
+      const linksHtml = `
+        ${startup.links.whatsapp ? `<a href="${startup.links.whatsapp}" class="card-link" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>` : ''}
+        ${startup.links.instagram ? `<a href="${startup.links.instagram}" class="card-link" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
+        ${startup.links.amazon ? `<a href="${startup.links.amazon}" class="card-link" title="Amazon" target="_blank"><i class="fab fa-amazon"></i></a>` : ''}
+        ${startup.links.youtube ? `<a href="${startup.links.youtube}" class="card-link" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>` : ''}
+      `;
+      
+      return `
+  <div class="card"
+       data-tags="${startup.tags.join(',').toLowerCase()}"
+       data-name="${startup.name.toLowerCase()}">
+    <div class="card-image-boul">
+      <img src="${startup.image}"
+           alt="${startup.name}"
+           class="card-image">
+      <div class="card-image-overlay"></div>
+    </div>
+    <div class="card-content">
+      <h3 class="card-title">${startup.name}</h3>
+      <p class="card-description">${startup.description}</p>
+      <div class="card-tags">${tagsHtml}</div>
+      <div id="flex">
+        <div class="card-links">${linksHtml}</div>
+        <div class="card-actions">
+          <a href="${startup.page}" class="btn primary">
+            <i class="fas fa-arrow-right"></i> More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+
+    }
+    
+    // Set up search functionality
+    function setupSearch(startups) {
+      const searchInput = document.getElementById('search-input');
+      
+      searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        // If search term is empty, show all startups
+        if (searchTerm === '') {
+          renderStartups(startups);
+          return;
+        }
+        
+        // Filter startups by name or tags
+        const filteredStartups = startups.filter(startup => {
+          const name = startup.name.toLowerCase();
+          const tags = startup.tags.join(',').toLowerCase();
+          
+          return name.includes(searchTerm) || tags.includes(searchTerm);
+        });
+        
+        renderStartups(filteredStartups);
+      });
+    }
+    
+    // Handle form submission
+    document.getElementById('startup-f').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const id = 'startup-' + Date.now();
+      const name = document.getElementById('startup-n').value;
+      const description = document.getElementById('startup-descript').value;
+      const tags = document.getElementById('startup-tags').value.split(',').map(tag => tag.trim());
+      const imageFile = document.getElementById('startup-img-upload').files[0];
+      const imageUrl = document.getElementById('startup-img').value;
+      const whatsapp = document.getElementById('startup-whatsapp').value;
+      const instagram = document.getElementById('startup-instagram').value;
+      const youtube = document.getElementById('startup-youtube').value;
+      const amazon = document.getElementById('startup-amazon').value;
+      
+      let image = imageUrl;
+      
+      // Handle image file upload
+      if (imageFile) {
+        const reader = new FileReader();
+        image = await new Promise((resolve) => {
+          reader.onload = (e) => resolve(e.target.result);
+          reader.readAsDataURL(imageFile);
+        });
+      } else if (!imageUrl) {
+        image = 'https://images.pexels.com/photos/7103/writing-notes-idea-conference.jpg?auto=compress&cs=tinysrgb&w=800';
+      }
+      
+      const startup = {
+        id,
+        name,
+        description,
+        tags,
+        image,
+        links: {
+          whatsapp,
+          instagram,
+          amazon,
+          youtube
+        }
+      };
+      
+      saveStartupToStorage(startup);
+      
+      const startupsboul = document.getElementById('startups-boul');
+      startupsboul.innerHTML = createStartupCard(startup) + startupsboul.innerHTML;
+      
+      document.getElementById('startup-f').reset();
+      document.getElementById('image-preview').style.display = 'none';
+      document.querySelector('.imgupload-placeholder').style.display = 'block';
+      
+      alert('Your startup has been submitted successfully!');
+    });
+    
+    // Save startup to localStorage
+    function saveStartupToStorage(startup) {
+      const existingStartups = getLocalStartups();
+      existingStartups.push(startup);
+      localStorage.setItem('startups', JSON.stringify(existingStartups));
+    }
+    
+    // Add image upload handling
+    document.getElementById('startup-img-upload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('image-preview');
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+          document.querySelector('.imgupload-placeholder').style.display = 'none';
+          document.getElementById('startup-img').value = ''; // Clear URL input
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Add drag and drop support
+    const dropZone = document.querySelector('.image-upload-boul');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+      dropZone.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+      dropZone.classList.remove('highlight');
+    }
+
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const file = dt.files[0];
+      
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('image-preview');
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+          document.querySelector('.imgupload-placeholder').style.display = 'none';
+          document.getElementById('startup-img').value = ''; // Clear URL input
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', fetchStartups);
+  </script>
+</body>
+</html>
